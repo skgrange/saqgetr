@@ -19,6 +19,12 @@ Tibble.
 \description{
 Function to import air quality observations.
 }
+\examples{
+
+# Load a site's data
+data_hafodyrynys <- sairr_observations(site = "gb1038a")
+
+}
 \author{
 Stuart K. Grange.
 }

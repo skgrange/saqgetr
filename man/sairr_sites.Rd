@@ -17,6 +17,12 @@ Tibble.
 Function to import information for monitoring sites/stations/facilities 
 serviced by the \strong{sairr} package.
 }
+\examples{
+
+# Load sites table
+data_sites <- sairr_sites()
+
+}
 \author{
 Stuart K. Grange.
 }

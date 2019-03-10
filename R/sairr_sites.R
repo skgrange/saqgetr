@@ -7,6 +7,11 @@
 #' 
 #' @return Tibble. 
 #' 
+#' @examples 
+#' 
+#' # Load sites table
+#' data_sites <- sairr_sites()
+#' 
 #' @export
 sairr_sites <- function(file = NA) {
   

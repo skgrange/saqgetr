@@ -10,6 +10,11 @@
 #' 
 #' @return Tibble. 
 #' 
+#' @examples
+#' 
+#' # Load a site's data
+#' data_hafodyrynys <- sairr_observations(site = "gb1038a")
+#' 
 #' @export
 sairr_observations <- function(site, tz = "UTC", verbose = FALSE) {
   
