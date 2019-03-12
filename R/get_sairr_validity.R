@@ -6,8 +6,13 @@
 #' 
 #' @return Tibble. 
 #' 
+#' @examples 
+#' 
+#' # Get validity integers
+#' data_validity <- get_sairr_validity()
+#' 
 #' @export
-sairr_validity <- function(file = NA) {
+get_sairr_validity <- function(file = NA) {
   
   # Default file
   if (is.na(file[1])) {
@@ -31,8 +36,13 @@ sairr_validity <- function(file = NA) {
 #' 
 #' @return Tibble. 
 #' 
+#' @examples 
+#' 
+#' # Get summary integers
+#' data_validity <- get_sairr_summaries()
+#' 
 #' @export
-sairr_summaries <- function(file = NA) {
+get_sairr_summaries <- function(file = NA) {
   
   # Default file
   if (is.na(file[1])) {

@@ -1,7 +1,7 @@
 #' Function to clean and format observational data from \strong{sairr}'s 
-#' \code{\link{sairr_observations}} function. 
+#' \code{\link{get_sairr_observations}} function. 
 #' 
-#' @param df Tibble/data frame from \code{\link{sairr_observations}}. 
+#' @param df Tibble/data frame from \code{\link{get_sairr_observations}}. 
 #' 
 #' @param summary Summary to filter data to. Default is \code{"hour"}. 
 #' 

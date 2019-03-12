@@ -1,4 +1,4 @@
-#' Function to import simple summaries of air quality observations. 
+#' Function to get simple summaries of air quality observations. 
 #' 
 #' @param file File of simple summaries table. 
 #' 
@@ -17,11 +17,11 @@
 #' @examples 
 #' 
 #' # Import annual means
-#' data_annual <- sairr_simple_summaries(summary = "year")
+#' data_annual <- get_sairr_simple_summaries(summary = "year")
 #' 
 #' @export
-sairr_simple_summaries <- function(file = NA, summary = "year", tz = "UTC", 
-                                   progress = FALSE) {
+get_sairr_simple_summaries <- function(file = NA, summary = "year", tz = "UTC", 
+                                       progress = FALSE) {
   
   
   # Parse and check arguments
@@ -35,6 +35,7 @@ sairr_simple_summaries <- function(file = NA, summary = "year", tz = "UTC",
     file <- "https://skgrange.github.io/data.service/data/sairr/observations_summaries/monthly_mean_summaries.csv.gz"
   }
   
+  # Set data types
   col_types <- readr::cols(
     date = readr::col_character(),
     date_end = readr::col_character(),
@@ -46,6 +47,7 @@ sairr_simple_summaries <- function(file = NA, summary = "year", tz = "UTC",
     value = readr::col_double()
   )
   
+  # Read data
   df <- readr::read_csv(
     file,
     col_types = col_types,

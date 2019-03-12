@@ -1,4 +1,4 @@
-#' Function to import air quality observations. 
+#' Function to get \strong{sairr} air quality observations. 
 #' 
 #' @param site A vector or sites to import. 
 #' 
@@ -13,10 +13,10 @@
 #' @examples
 #' 
 #' # Load a site's data
-#' data_hafodyrynys <- sairr_observations(site = "gb1038a")
+#' data_hafodyrynys <- get_sairr_observations(site = "gb1038a")
 #' 
 #' @export
-sairr_observations <- function(site, tz = "UTC", verbose = FALSE) {
+get_sairr_observations <- function(site, tz = "UTC", verbose = FALSE) {
   
   # Build file names
   file_remote <- stringr::str_c("air_quality_data_site_", site, ".csv.gz")
@@ -38,7 +38,7 @@ sairr_observations <- function(site, tz = "UTC", verbose = FALSE) {
   # Load files
   df <- purrr::imap_dfr(
     file_remote, 
-    ~sairr_observations_worker(
+    ~get_sairr_observations_worker(
       file = .x,
       site = .y,
       tz = tz,
@@ -51,7 +51,7 @@ sairr_observations <- function(site, tz = "UTC", verbose = FALSE) {
 }
 
 
-sairr_observations_worker <- function(file, site, tz, verbose) {
+get_sairr_observations_worker <- function(file, site, tz, verbose) {
   
   # For messaging
   if (verbose) {

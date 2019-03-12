@@ -3,13 +3,13 @@
 \name{sairr_clean_observations}
 \alias{sairr_clean_observations}
 \title{Function to clean and format observational data from \strong{sairr}'s 
-\code{\link{sairr_observations}} function.}
+\code{\link{get_sairr_observations}} function.}
 \usage{
 sairr_clean_observations(df, summary = "hour", valid_only = TRUE,
   spread = TRUE)
 }
 \arguments{
-\item{df}{Tibble/data frame from \code{\link{sairr_observations}}.}
+\item{df}{Tibble/data frame from \code{\link{get_sairr_observations}}.}
 
 \item{summary}{Summary to filter data to. Default is \code{"hour"}.}
 
@@ -24,7 +24,7 @@ Tibble.
 }
 \description{
 Function to clean and format observational data from \strong{sairr}'s 
-\code{\link{sairr_observations}} function.
+\code{\link{get_sairr_observations}} function.
 }
 \author{
 Stuart K. Grange

@@ -10,10 +10,10 @@
 #' @examples 
 #' 
 #' # Load sites table
-#' data_sites <- sairr_sites()
+#' data_sites <- get_sairr_sites()
 #' 
 #' @export
-sairr_sites <- function(file = NA) {
+get_sairr_sites <- function(file = NA) {
   
   # Default file
   if (is.na(file[1])) {
