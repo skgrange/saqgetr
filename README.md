@@ -17,7 +17,7 @@ remotes::install_github("skgrange/sairrr")
 
 ## Framework
 
-**sairr** acts as an interface to pre-prepared data files located on a web server. For each monitoring site serviced, there is a single file containing all observations. There are a number of metadata files too which enable users to further understand the location and type of observations are available. The data files are compressed text files which allows for simple and fast importing and if other interfaces wish to be developed, it will be easy. 
+**sairr** acts as an interface to pre-prepared data files located on a web server. For each monitoring site serviced, there is a single file containing all observations. There are a number of metadata files too which enable users to further understand the location and type of observations are available. The data files are compressed text files (`.csv.gz`) which allows for simple and fast importing and if other interfaces wish to be developed, this should be simple. 
 
 ## Usage
 
@@ -33,24 +33,27 @@ library(sairr)
 # Import site information
 data_sites <- get_sairr_sites()
 
-# Print tibble
-head(data_sites)
-#> # A tibble: 6 x 16
-#>   site  site_name latitude longitude elevation country country_iso_code
-#>   <chr> <chr>        <dbl>     <dbl>     <dbl> <chr>   <chr>           
-#> 1 gb00… BONNYRIG…     55.9    -3.10        111 united… GB              
-#> 2 gb00… Eskdalem…     55.3    -3.21        255 united… GB              
-#> 3 gb00… Stoke Fe…     52.6     0.506         3 united… GB              
-#> 4 gb00… Lough Na…     54.4    -7.90        130 united… GB              
-#> 5 gb00… Yarner W…     50.6    -3.72        119 united… GB              
-#> 6 gb00… High Muf…     54.3    -0.809       267 united… GB              
-#> # … with 9 more variables: site_type <chr>, site_area <chr>,
-#> #   date_start <dttm>, date_end <dttm>, network <chr>, eu_code <chr>,
-#> #   eoi_code <chr>, observation_count <dbl>, data_source <chr>
+# Glimpse tibble
+glimpse(data_sites)
 
-# Print sites
-head(data_sites$site)
-#> [1] "gb0001a" "gb0002r" "gb0004r" "gb0006r" "gb0013r" "gb0014r"
+#> Observations: 633
+#> Variables: 16
+#> $ site              <chr> "gb0001a", "gb0002r", "gb0004r", "gb0006r", "g…
+#> $ site_name         <chr> "BONNYRIGG 1", "Eskdalemuir", "Stoke Ferry", "…
+#> $ latitude          <dbl> 55.87389, 55.31531, 52.55985, 54.43951, 50.597…
+#> $ longitude         <dbl> -3.104447, -3.206111, 0.506147, -7.900328, -3.…
+#> $ elevation         <dbl> 111, 255, 3, 130, 119, 267, 270, 5, 370, 32, 1…
+#> $ country           <chr> "united_kingdom", "united_kingdom", "united_ki…
+#> $ country_iso_code  <chr> "GB", "GB", "GB", "GB", "GB", "GB", "GB", "GB"…
+#> $ site_type         <chr> "background", "background", "background", "bac…
+#> $ site_area         <chr> "suburban", "rural", "rural", "rural", "rural"…
+#> $ date_start        <dttm> 1997-04-01, 1986-04-23, 1997-01-01, 1987-04-0…
+#> $ date_end          <dttm> 1998-07-06 00:00:00, 2017-12-31 22:00:00, 201…
+#> $ network           <chr> NA, "GB_Network_1", "GB_Network_1", "GB_Networ…
+#> $ eu_code           <chr> NA, "Station_GB0002R", "Station_GB0004R", "Sta…
+#> $ eoi_code          <chr> NA, "GB0002R", "GB0004R", "GB0006R", "GB0013R"…
+#> $ observation_count <dbl> 859, 762289, 1974, 665118, 738157, 722719, 606…
+#> $ data_source       <chr> "airbase", "aqer:e1a", "aqer:e1a", "aqer:e1a",…
 ```
 
 ### Observations
@@ -61,19 +64,21 @@ Sites are represented by a code which is prefixed with the country's ISO code, f
 # Get air quality monitoring data for a York site
 data_york <- get_sairr_observations(site = "gb0919a")
 
-# Print tibble
-head(data_york)
-#> # A tibble: 6 x 10
-#>   date                date_end            site  site_name variable process
-#>   <dttm>              <dttm>              <chr> <chr>     <chr>      <int>
-#> 1 2008-01-01 00:00:00 NA                  gb09… York Fis… pm10       62392
-#> 2 2008-01-02 00:00:00 NA                  gb09… York Fis… pm10       62392
-#> 3 2008-01-03 00:00:00 NA                  gb09… York Fis… pm10       62392
-#> 4 2008-01-04 00:00:00 NA                  gb09… York Fis… pm10       62392
-#> 5 2008-01-05 00:00:00 NA                  gb09… York Fis… pm10       62392
-#> 6 2008-01-06 00:00:00 NA                  gb09… York Fis… pm10       62392
-#> # … with 4 more variables: summary <int>, validity <int>, unit <chr>,
-#> #   value <dbl>
+# Glimpse tibble
+glimpse(data_york)
+
+#> Observations: 333,741
+#> Variables: 10
+#> $ date      <dttm> 2008-01-01, 2008-01-02, 2008-01-03, 2008-01-04, 2008-…
+#> $ date_end  <dttm> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+#> $ site      <chr> "gb0919a", "gb0919a", "gb0919a", "gb0919a", "gb0919a",…
+#> $ site_name <chr> "York Fishergate", "York Fishergate", "York Fishergate…
+#> $ variable  <chr> "pm10", "pm10", "pm10", "pm10", "pm10", "pm10", "pm10"…
+#> $ process   <int> 62392, 62392, 62392, 62392, 62392, 62392, 62392, 62392…
+#> $ summary   <int> 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20…
+#> $ validity  <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, …
+#> $ unit      <chr> "µg/m3", "µg/m3", "µg/m3", "µg/m3", "µg/m3", "µg/m3", …
+#> $ value     <dbl> 21.625, 22.708, 24.667, 21.833, 24.000, 29.875, 16.833…
 ```
 
 `get_sairr_observations` takes a vector of sites to import many sites at once. Beware that if a user stacks the sites, a lot of data can be returned. For example, using the two sites below returns a tibble/data frame/table with almost 10 million observations. 
@@ -81,47 +86,133 @@ head(data_york)
 ```{r}
 # Get almost 10 million observations
 data_large_ish <- get_sairr_observations(site = c("gb0036r", "gb0682a"))
+
+# Glimpse tibble
+glimpse(data_large_ish)
+
+#> Observations: 9,911,190
+#> Variables: 10
+#> $ date      <dttm> 1995-09-11, 1995-09-12, 1995-09-13, 1995-09-14, 1995-…
+#> $ date_end  <dttm> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+#> $ site      <chr> "gb0036r", "gb0036r", "gb0036r", "gb0036r", "gb0036r",…
+#> $ site_name <chr> "Harwell", "Harwell", "Harwell", "Harwell", "Harwell",…
+#> $ variable  <chr> "so2", "so2", "so2", "so2", "so2", "so2", "so2", "so2"…
+#> $ process   <int> 57295, 57295, 57295, 57295, 57295, 57295, 57295, 57295…
+#> $ summary   <int> 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20…
+#> $ validity  <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …
+#> $ unit      <chr> "µg/m3", "µg/m3", "µg/m3", "µg/m3", "µg/m3", "µg/m3", …
+#> $ value     <dbl> 0.983, 0.792, 1.362, 0.483, 14.633, 1.171, 0.821, 15.2…
 ```
 
 #### Cleaning observations
 
+Once a data are imported, valid data at a for a certain averaging period/summary can be isolated with `sairr_clean_observations`. `sairr_clean_observations` can also "spread" data where the variable/pollutants become columns: 
+
 ```{r}
-sairr_clean_observations()
+# Get only valid hourly data and reshape (spread)
+data_york_spread <- data_york %>% 
+  sairr_clean_observations(summary = "hour", valid_only = TRUE, spread = TRUE)
 ```
 
 ### Processes
+
+Information on the specific time series/processes can also be retrieved. 
 
 ```{r}
 # Get processes
 data_processes <- get_sairr_processes()
 
-# Print tibble
-head(data_processes)
-#> # A tibble: 6 x 15
-#>   process site  variable variable_long period unit  date_start         
-#>     <int> <chr> <chr>    <chr>         <chr>  <chr> <dttm>             
-#> 1   57079 gb00… sa       Strong acidi… day    µg S… 1998-01-01 00:00:00
-#> 2   57080 gb00… sa       Strong acidi… day    µg S… 1997-04-01 00:00:00
-#> 3   57081 gb00… bs       Black smoke … day    µg/m3 1997-04-01 00:00:00
-#> 4   57082 gb00… o3       Ozone (air)   day    µg/m3 1986-04-23 00:00:00
-#> 5   57083 gb00… o3       Ozone (air)   dymax  µg/m3 1986-04-23 00:00:00
-#> 6   57084 gb00… o3       Ozone (air)   hour   µg/m3 1986-04-23 07:00:00
-#> # … with 8 more variables: date_end <dttm>, sample <chr>,
-#> #   sampling_point <chr>, sampling_process <chr>, observed_property <int>,
-#> #   group_code <int>, data_source <chr>, observation_count <dbl>
+# Glimpse tibble
+glimpse(data_processes)
+
+#> Observations: 8,257
+#> Variables: 15
+#> $ process           <int> 57079, 57080, 57081, 57082, 57083, 57084, 5708…
+#> $ site              <chr> "gb0001a", "gb0001a", "gb0001a", "gb0002r", "g…
+#> $ variable          <chr> "sa", "sa", "bs", "o3", "o3", "o3", "o3", "no2…
+#> $ variable_long     <chr> "Strong acidity (air)", "Strong acidity (air)"…
+#> $ period            <chr> "day", "day", "day", "day", "dymax", "hour", "…
+#> $ unit              <chr> "µg SO2/m3", "µg SO2/m3", "µg/m3", "µg/m3", "µ…
+#> $ date_start        <dttm> 1998-01-01 00:00:00, 1997-04-01 00:00:00, 199…
+#> $ date_end          <dttm> 1998-07-06 00:00:00, 1998-03-30 00:00:00, 199…
+#> $ sample            <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+#> $ sampling_point    <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+#> $ sampling_process  <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+#> $ observed_property <int> 3, 3, 6, 7, 7, 7, 7, 8, 8, 9, 9, 12, 12, 13, 1…
+#> $ group_code        <int> 100, 101, 100, 100, 100, 100, 100, 100, 100, 1…
+#> $ data_source       <chr> "airbase", "airbase", "airbase", "airbase", "a…
+#> $ observation_count <dbl> 123, 351, 385, 9542, 9547, 225711, 227809, 284…
 ```
 
 ### Other metadata
 
+Other helper tables are also available: 
+
 ```{r}
-# Get helper tables
-data_summary_integers <- get_sairr_summaries()
-data_validity_integers <- get_sairr_validity()
+# Get other helper tables
+# Summary integers
+data_summary_integers <- get_sairr_summaries() %>% 
+  print(n = Inf)
+  
+#> # A tibble: 20 x 2
+#>    averaging_period summary
+#>    <chr>              <int>
+#>  1 hour                   1
+#>  2 day                   20
+#>  3 week                  90
+#>  4 var                   91
+#>  5 month                 92
+#>  6 fortnight             93
+#>  7 3month                94
+#>  8 2month                95
+#>  9 2day                  96
+#> 10 3day                  97
+#> 11 2week                 98
+#> 12 4week                 99
+#> 13 3hour                100
+#> 14 8hour                101
+#> 15 hour8                101
+#> 16 year                 102
+#> 17 dymax                 21
+#> 18 quarter              103
+#> 19 other                 91
+#> 20 n-hour               104
+
+# Validity integers
+data_validity_integers <- get_sairr_validity() %>% 
+  print(n = Inf)
+  
+#> # A tibble: 6 x 4
+#>   validity valid description                                  notes        
+#>      <int> <lgl> <chr>                                        <chr>        
+#> 1       NA FALSE data is considered to be invalid due to the… from aqer    
+#> 2       -1 FALSE invalid due to other circumstances or data … from aqer    
+#> 3        0 FALSE invalid                                      smonitor nom…
+#> 4        1 TRUE  <NA>                                         from aqer    
+#> 5        2 TRUE  valid but below detection limit measurement… from aqer    
+#> 6        3 TRUE  valid but below detection limit and number … from aqer
 ````
 
 ### Simple annual and monthly means of observations
 
+Simple annual and monthly means of the daily and hourly processes have also been generated. These summaries are often useful for trend analysis or mapping. 
+
 ```{r}
 # Get annual means
 data_annual <- get_sairr_simple_summaries(summary = "year")
+
+# Glimpse tibble
+glimpse(data_annual)
+
+#> Observations: 623,054
+#> Variables: 8
+#> $ date           <dttm> 2013-01-01, 2014-01-01, 2015-01-01, 2016-01-01, …
+#> $ date_end       <dttm> 2013-12-31 23:59:59, 2014-12-31 23:59:59, 2015-1…
+#> $ site           <chr> "ad0942a", "ad0942a", "ad0942a", "ad0942a", "ad09…
+#> $ variable       <chr> "co", "co", "co", "co", "co", "no", "no", "no", "…
+#> $ summary_source <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
+#> $ summary        <int> 102, 102, 102, 102, 102, 102, 102, 102, 102, 102,…
+#> $ count          <dbl> 1, 8438, 8385, 8171, 8440, 1, 8310, 8308, 8341, 8…
+#> $ value          <dbl> 0.5000000, 0.3224579, 0.3582230, 0.3168768, 0.259…
 ```
+
