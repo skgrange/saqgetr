@@ -106,7 +106,7 @@ glimpse(data_large_ish)
 
 #### Cleaning observations
 
-Once a data are imported, valid data at a for a certain averaging period/summary can be isolated with `sairr_clean_observations`. `sairr_clean_observations` can also "spread" data where the variable/pollutants become columns: 
+Once a data are imported, valid data for a certain averaging period/summary can be isolated with `sairr_clean_observations`. `sairr_clean_observations` can also "spread" data where the variable/pollutants become columns: 
 
 ```{r}
 # Get only valid hourly data and reshape (spread)

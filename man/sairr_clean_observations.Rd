@@ -6,7 +6,7 @@
 \code{\link{get_sairr_observations}} function.}
 \usage{
 sairr_clean_observations(df, summary = "hour", valid_only = TRUE,
-  spread = TRUE)
+  spread = FALSE)
 }
 \arguments{
 \item{df}{Tibble/data frame from \code{\link{get_sairr_observations}}.}
@@ -25,6 +25,22 @@ Tibble.
 \description{
 Function to clean and format observational data from \strong{sairr}'s 
 \code{\link{get_sairr_observations}} function.
+}
+\examples{
+
+# Load a site's data
+data_hafodyrynys <- get_sairr_observations(site = "gb1038a")
+
+# Keep only valid and hourly data
+data_hafodyrynys_hourly <- data_hafodyrynys \%>\% 
+  sairr_clean_observations(summary = "hour", valid_only = TRUE) \%>\% 
+  print()
+
+# Spread hourly data, a different table format here
+data_hafodyrynys_hourly_spread <- data_hafodyrynys \%>\% 
+  sairr_clean_observations(summary = "hour", valid_only = TRUE, spread = TRUE) \%>\% 
+  print()
+
 }
 \author{
 Stuart K. Grange

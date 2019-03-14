@@ -15,9 +15,24 @@
 #' 
 #' @return Tibble. 
 #' 
+#' @examples 
+#' 
+#' # Load a site's data
+#' data_hafodyrynys <- get_sairr_observations(site = "gb1038a")
+#' 
+#' # Keep only valid and hourly data
+#' data_hafodyrynys_hourly <- data_hafodyrynys %>% 
+#'   sairr_clean_observations(summary = "hour", valid_only = TRUE) %>% 
+#'   print()
+#'
+#' # Spread hourly data, a different table format here
+#' data_hafodyrynys_hourly_spread <- data_hafodyrynys %>% 
+#'   sairr_clean_observations(summary = "hour", valid_only = TRUE, spread = TRUE) %>% 
+#'   print()
+#' 
 #' @export
 sairr_clean_observations <- function(df, summary = "hour", valid_only = TRUE,
-                                     spread = TRUE) {
+                                     spread = FALSE) {
   
   # Parse inputs
   summary <- stringr::str_trim(summary)

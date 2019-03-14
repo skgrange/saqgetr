@@ -4,10 +4,23 @@
 \alias{get_sairr_observations}
 \title{Function to get \strong{sairr} air quality observations.}
 \usage{
-get_sairr_observations(site, tz = "UTC", verbose = FALSE)
+get_sairr_observations(site, variable = NA, start = NA, end = NA,
+  valid_only = FALSE, tz = "UTC", verbose = FALSE)
 }
 \arguments{
-\item{site}{A vector or sites to import.}
+\item{site}{A vector of sites to import. Use \link{get_sairr_sites} to find
+what sites are available.}
+
+\item{variable}{An optional variable vector. If not used, all variables will
+be returned.}
+
+\item{start}{Start date for returned observations. Can either be a date string in
+\code{"yyyy-mm-dd"} format, or a year integer.}
+
+\item{end}{End date for returned observations. Can either be a date string in
+\code{"yyyy-mm-dd"} format, or a year integer.}
+
+\item{valid_only}{Should only valid observations be kept?}
 
 \item{tz}{Time zone for the observations's dates.}
 
@@ -24,6 +37,23 @@ Function to get \strong{sairr} air quality observations.
 # Load a site's data
 data_hafodyrynys <- get_sairr_observations(site = "gb1038a")
 
+# Check
+head(data_hafodyrynys)
+
+# Get mulitple sites nox and ozone data for between a date range
+data_many <- get_sairr_observations(
+  site = c("gb1014a", "gb1044a", "gb1060a"),
+  variable = c("nox", "no2", "o3"),
+  start = "2011-08-01",
+  end = "2013-06-01"
+)
+
+# Check
+head(data_many)
+
+}
+\seealso{
+\code{\link{sairr_clean_observations}}
 }
 \author{
 Stuart K. Grange.
