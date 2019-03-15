@@ -4,14 +4,14 @@
 \alias{get_sairr_simple_summaries}
 \title{Function to get simple summaries of air quality observations.}
 \usage{
-get_sairr_simple_summaries(file = NA, summary = "year", tz = "UTC",
-  progress = FALSE)
+get_sairr_simple_summaries(file = NA, summary = "annual_mean",
+  tz = "UTC", progress = FALSE)
 }
 \arguments{
 \item{file}{File of simple summaries table.}
 
-\item{summary}{Summary period to import. Can either be \code{"year"} or
-\code{"month"}.}
+\item{summary}{Summary period to import. Can either be \code{"annual_mean"} or
+\code{"monthly_mean"}.}
 
 \item{tz}{Time zone for the observations's dates.}
 
@@ -27,7 +27,7 @@ Function to get simple summaries of air quality observations.
 \examples{
 
 # Import annual means
-data_annual <- get_sairr_simple_summaries(summary = "year")
+data_annual <- get_sairr_simple_summaries(summary = "annual_mean")
 
 }
 \author{

@@ -2,8 +2,8 @@
 #' 
 #' @param file File of simple summaries table. 
 #' 
-#' @param summary Summary period to import. Can either be \code{"year"} or
-#'  \code{"month"}. 
+#' @param summary Summary period to import. Can either be \code{"annual_mean"} or
+#'  \code{"monthly_mean"}. 
 #' 
 #' @param tz Time zone for the observations's dates. 
 #' 
@@ -17,21 +17,22 @@
 #' @examples 
 #' 
 #' # Import annual means
-#' data_annual <- get_sairr_simple_summaries(summary = "year")
+#' data_annual <- get_sairr_simple_summaries(summary = "annual_mean")
 #' 
 #' @export
-get_sairr_simple_summaries <- function(file = NA, summary = "year", tz = "UTC", 
+get_sairr_simple_summaries <- function(file = NA, summary = "annual_mean", tz = "UTC", 
                                        progress = FALSE) {
   
   
   # Parse and check arguments
   summary <- stringr::str_trim(summary)
   summary <- stringr::str_to_lower(summary)
-  stopifnot(summary %in% c("year", "month"))
+  summary <- stringr::str_remove(summary, "s$")
+  stopifnot(summary %in% c("annual_mean", "monthly_mean"))
   
-  if (is.na(file[1]) && summary == "year") {
+  if (is.na(file[1]) && summary == "annual_mean") {
     file <- "https://skgrange.github.io/data.service/data/sairr/observations_summaries/annual_mean_summaries.csv.gz"
-  } else if (is.na(file[1]) && summary == "month") {
+  } else if (is.na(file[1]) && summary == "monthly_mean") {
     file <- "https://skgrange.github.io/data.service/data/sairr/observations_summaries/monthly_mean_summaries.csv.gz"
   }
   
