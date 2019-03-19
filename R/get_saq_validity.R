@@ -1,4 +1,4 @@
-#' Function to import validiy integers for used in the \strong{sairr} package.  
+#' Function to import validiy integers for used in the \strong{saqgetr} package.  
 #' 
 #' @param file File of validiy helper table. 
 #' 
@@ -9,10 +9,10 @@
 #' @examples 
 #' 
 #' # Get validity integers
-#' data_validity <- get_sairr_validity()
+#' data_validity <- get_saq_validity()
 #' 
 #' @export
-get_sairr_validity <- function(file = NA) {
+get_saq_validity <- function(file = NA) {
   
   # Default file
   if (is.na(file[1])) {
@@ -28,7 +28,7 @@ get_sairr_validity <- function(file = NA) {
 }
 
 
-#' Function to import summary integers for used in the \strong{sairr} package.  
+#' Function to import summary integers for used in the \strong{saqgetr} package.  
 #' 
 #' @param file File of summary helper table. 
 #' 
@@ -39,10 +39,10 @@ get_sairr_validity <- function(file = NA) {
 #' @examples 
 #' 
 #' # Get summary integers
-#' data_validity <- get_sairr_summaries()
+#' data_validity <- get_saq_summaries()
 #' 
 #' @export
-get_sairr_summaries <- function(file = NA) {
+get_saq_summaries <- function(file = NA) {
   
   # Default file
   if (is.na(file[1])) {

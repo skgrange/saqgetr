@@ -1,6 +1,6 @@
-#' Function to get \strong{sairr} air quality observations. 
+#' Function to get \strong{saqgetr} air quality observations. 
 #' 
-#' @param site A vector of sites to import. Use \link{get_sairr_sites} to find
+#' @param site A vector of sites to import. Use \link{get_saq_sites} to find
 #' what sites are available. 
 #' 
 #' @param variable An optional variable vector. If not used, all variables will
@@ -22,29 +22,33 @@
 #' 
 #' @return Tibble. 
 #' 
-#' @seealso \code{\link{sairr_clean_observations}}
+#' @seealso \code{\link{get_saq_sites}}, \code{\link{saq_clean_observations}}
 #' 
 #' @examples
 #' 
 #' # Load a site's data
-#' data_hafodyrynys <- get_sairr_observations(site = "gb1038a")
+#' data_hafodyrynys <- get_saq_observations(site = "gb1038a")
 #' 
-#' # Check
-#' head(data_hafodyrynys)
+#' # Print tibble
+#' data_hafodyrynys
 #' 
 #' # Get mulitple sites nox and ozone data for between a date range
-#' data_many <- get_sairr_observations(
+#' data_many <- get_saq_observations(
 #'   site = c("gb1014a", "gb1044a", "gb1060a"),
 #'   variable = c("nox", "no2", "o3"),
-#'   start = "2011-08-01",
-#'   end = "2013-06-01"
+#'   start = 2010,
+#'   end = 2019
 #' )
 #' 
-#' # Check
-#' head(data_many)
+#' # Print tibble
+#' data_many
+#' 
+#' # Sites and site names
+#' data_many %>% 
+#'   dplyr::distinct(site)
 #' 
 #' @export
-get_sairr_observations <- function(site, variable = NA, start = NA, end = NA, 
+get_saq_observations <- function(site, variable = NA, start = NA, end = NA, 
                                    valid_only = FALSE, tz = "UTC", 
                                    verbose = FALSE) {
   
@@ -80,7 +84,7 @@ get_sairr_observations <- function(site, variable = NA, start = NA, end = NA,
   # Load files
   df <- purrr::imap_dfr(
     file_remote, 
-    ~get_sairr_observations_worker(
+    ~get_saq_observations_worker(
       file = .x,
       site = .y,
       variable = variable,
@@ -97,8 +101,8 @@ get_sairr_observations <- function(site, variable = NA, start = NA, end = NA,
 }
 
 
-get_sairr_observations_worker <- function(file, site, variable, start, end,
-                                          valid_only, tz, verbose) {
+get_saq_observations_worker <- function(file, site, variable, start, end,
+                                        valid_only, tz, verbose) {
   
   # For messaging
   if (verbose) {
@@ -106,7 +110,7 @@ get_sairr_observations_worker <- function(file, site, variable, start, end,
   }
   
   # Read data
-  df <- read_sairr_observations_safely(file, tz = tz)
+  df <- read_saq_observations_safely(file, tz = tz)
   
   # Filter to dates
   df <- filter(df, date >= start, date <= end)
@@ -127,14 +131,13 @@ get_sairr_observations_worker <- function(file, site, variable, start, end,
 
 
 # Reading function
-read_sairr_observations <- function(file, tz = tz) {
+read_saq_observations <- function(file, tz = tz) {
   
   # Data types
   col_types <- readr::cols(
     date = readr::col_character(),
     date_end = readr::col_character(),
     site = readr::col_character(),
-    site_name = readr::col_character(),
     variable = readr::col_character(),
     process = readr::col_integer(),
     summary = readr::col_integer(),
@@ -154,8 +157,8 @@ read_sairr_observations <- function(file, tz = tz) {
 
 
 # Make reader return empty tibble when an error occurs
-read_sairr_observations_safely <- purrr::possibly(
-  read_sairr_observations, 
+read_saq_observations_safely <- purrr::possibly(
+  read_saq_observations, 
   otherwise = tibble::tibble()
 )
 

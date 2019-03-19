@@ -1,29 +1,29 @@
-# **sairr**
+# **saqgetr**
 
-[![Build Status](https://travis-ci.org/skgrange/sairr.svg?branch=master)](https://travis-ci.org/skgrange/sairr)
+[![Build Status](https://travis-ci.org/skgrange/saqgetr.svg?branch=master)](https://travis-ci.org/skgrange/saqgetr)
 
-**sairr** is an R package to import air quality monitoring data in a fast and easy way. Currently, only European data are available, but the package is generic and therefore data from other areas may be included in the future. 
+**saqgetr** is an R package to import air quality monitoring data in a fast and easy way. Currently, only European data are available, but the package is generic and therefore data from other areas may be included in the future. 
 
 ## Installation
 
 To install the development version, install [**devtools**](https://github.com/r-lib/devtools) or [**remotes**](https://github.com/r-lib/remotes) and then use this: 
 
 ```
-# Install development version sairr
-remotes::install_github("skgrange/sairrr")
+# Install development version saqgetr
+remotes::install_github("skgrange/saqgetr")
 ```
 
-**sairr** should make it onto CRAN in the near future. 
+**saqgetr** should make it onto CRAN in the near future. 
 
 ## Framework
 
-**sairr** acts as an interface to pre-prepared data files located on a web server. For each monitoring site serviced, there is a single file containing all observations. There are a number of metadata files too which enable users to further understand the location and type of observations are available. The data files are compressed text files (`.csv.gz`) which allows for simple and fast importing and if other interfaces wish to be developed, this should be simple. 
+**saqgetr** acts as an interface to pre-prepared data files located on a web server. For each monitoring site serviced, there is a single file containing all observations. There are a number of metadata files too which enable users to further understand the location and type of observations are available. The data files are compressed text files (`.csv.gz`) which allows for simple and fast importing and if other interfaces wish to be developed, this should be simple. 
 
 ## Usage
 
 ### Sites
 
-To import data with **sairr**, functions with the `get_sairr_*` prefix are used. A monitoring site must be supplied to get observations. To find what sites are available use `get_sairr_sites`: 
+To import data with **saqgetr**, functions with the `get_saq_*` prefix are used. A monitoring site must be supplied to get observations. To find what sites are available use `get_saq_sites`: 
 
 ```
 # Load packages
@@ -31,7 +31,7 @@ library(dplyr)
 library(sairr)
 
 # Import site information
-data_sites <- get_sairr_sites()
+data_sites <- get_saq_sites()
 
 # Glimpse tibble
 glimpse(data_sites)
@@ -62,7 +62,7 @@ Sites are represented by a code which is prefixed with the country's ISO code, f
 
 ```{r}
 # Get air quality monitoring data for a York site
-data_york <- get_sairr_observations(site = "gb0919a")
+data_york <- get_saq_observations(site = "gb0919a")
 
 # Glimpse tibble
 glimpse(data_york)
@@ -81,11 +81,11 @@ glimpse(data_york)
 #> $ value     <dbl> 21.625, 22.708, 24.667, 21.833, 24.000, 29.875, 16.833…
 ```
 
-`get_sairr_observations` takes a vector of sites to import many sites at once. Beware that if a user stacks the sites, a lot of data can be returned. For example, using the two sites below returns a tibble/data frame/table with almost 10 million observations. 
+`get_saq_observations` takes a vector of sites to import many sites at once. Beware that if a user stacks the sites, a lot of data can be returned. For example, using the two sites below returns a tibble/data frame/table with almost 10 million observations. 
 
 ```{r}
 # Get almost 10 million observations
-data_large_ish <- get_sairr_observations(site = c("gb0036r", "gb0682a"))
+data_large_ish <- get_saq_observations(site = c("gb0036r", "gb0682a"))
 
 # Glimpse tibble
 glimpse(data_large_ish)
@@ -106,12 +106,12 @@ glimpse(data_large_ish)
 
 #### Cleaning observations
 
-Once a data are imported, valid data for a certain averaging period/summary can be isolated with `sairr_clean_observations`. `sairr_clean_observations` can also "spread" data where the variable/pollutants become columns: 
+Once a data are imported, valid data for a certain averaging period/summary can be isolated with `saq_clean_observations`. `saq_clean_observations` can also "spread" data where the variable/pollutants become columns: 
 
 ```{r}
 # Get only valid hourly data and reshape (spread)
 data_york_spread <- data_york %>% 
-  sairr_clean_observations(summary = "hour", valid_only = TRUE, spread = TRUE)
+  saq_clean_observations(summary = "hour", valid_only = TRUE, spread = TRUE)
 ```
 
 ### Processes
@@ -120,7 +120,7 @@ Information on the specific time series/processes can also be retrieved.
 
 ```{r}
 # Get processes
-data_processes <- get_sairr_processes()
+data_processes <- get_saq_processes()
 
 # Glimpse tibble
 glimpse(data_processes)
@@ -151,7 +151,7 @@ Other helper tables are also available:
 ```{r}
 # Get other helper tables
 # Summary integers
-data_summary_integers <- get_sairr_summaries() %>% 
+data_summary_integers <- get_saq_summaries() %>% 
   print(n = Inf)
   
 #> # A tibble: 20 x 2
@@ -179,7 +179,7 @@ data_summary_integers <- get_sairr_summaries() %>%
 #> 20 n-hour               104
 
 # Validity integers
-data_validity_integers <- get_sairr_validity() %>% 
+data_validity_integers <- get_saq_validity() %>% 
   print(n = Inf)
   
 #> # A tibble: 6 x 4
@@ -199,7 +199,7 @@ Simple annual and monthly means of the daily and hourly processes have also been
 
 ```{r}
 # Get annual means
-data_annual <- get_sairr_simple_summaries(summary = "year")
+data_annual <- get_saq_simple_summaries(summary = "year")
 
 # Glimpse tibble
 glimpse(data_annual)
@@ -215,4 +215,3 @@ glimpse(data_annual)
 #> $ count          <dbl> 1, 8438, 8385, 8171, 8440, 1, 8310, 8308, 8341, 8…
 #> $ value          <dbl> 0.5000000, 0.3224579, 0.3582230, 0.3168768, 0.259…
 ```
-

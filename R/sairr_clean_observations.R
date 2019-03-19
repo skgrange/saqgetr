@@ -1,7 +1,7 @@
-#' Function to clean and format observational data from \strong{sairr}'s 
-#' \code{\link{get_sairr_observations}} function. 
+#' Function to clean and format observational data from \strong{saqgetr}'s 
+#' \code{\link{get_saq_observations}} function. 
 #' 
-#' @param df Tibble/data frame from \code{\link{get_sairr_observations}}. 
+#' @param df Tibble/data frame from \code{\link{get_saq_observations}}. 
 #' 
 #' @param summary Summary to filter data to. Default is \code{"hour"}. 
 #' 
@@ -18,20 +18,20 @@
 #' @examples 
 #' 
 #' # Load a site's data
-#' data_hafodyrynys <- get_sairr_observations(site = "gb1038a")
+#' data_hafodyrynys <- get_saq_observations(site = "gb1038a")
 #' 
 #' # Keep only valid and hourly data
 #' data_hafodyrynys_hourly <- data_hafodyrynys %>% 
-#'   sairr_clean_observations(summary = "hour", valid_only = TRUE) %>% 
+#'   saq_clean_observations(summary = "hour", valid_only = TRUE) %>% 
 #'   print()
 #'
 #' # Spread hourly data, a different table format here
 #' data_hafodyrynys_hourly_spread <- data_hafodyrynys %>% 
-#'   sairr_clean_observations(summary = "hour", valid_only = TRUE, spread = TRUE) %>% 
+#'   saq_clean_observations(summary = "hour", valid_only = TRUE, spread = TRUE) %>% 
 #'   print()
 #' 
 #' @export
-sairr_clean_observations <- function(df, summary = "hour", valid_only = TRUE,
+saq_clean_observations <- function(df, summary = "hour", valid_only = TRUE,
                                      spread = FALSE) {
   
   # Parse inputs
@@ -60,7 +60,7 @@ sairr_clean_observations <- function(df, summary = "hour", valid_only = TRUE,
   
   # Make wider
   if (spread) {
-    df <- make_sairr_observations_wider(df)
+    df <- make_saq_observations_wider(df)
   }
   
   return(df)
@@ -68,7 +68,7 @@ sairr_clean_observations <- function(df, summary = "hour", valid_only = TRUE,
 }
 
 
-make_sairr_observations_wider <- function(df) {
+make_saq_observations_wider <- function(df) {
   
   tryCatch({
     
@@ -76,7 +76,6 @@ make_sairr_observations_wider <- function(df) {
       select(date,
              date_end,
              site,
-             site_name,
              variable,
              value) %>% 
       tidyr::spread(variable, value)
@@ -92,7 +91,6 @@ make_sairr_observations_wider <- function(df) {
       select(date,
              date_end,
              site,
-             site_name,
              variable,
              value) %>% 
       distinct(date,

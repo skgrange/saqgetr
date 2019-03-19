@@ -17,11 +17,11 @@
 #' @examples 
 #' 
 #' # Import annual means
-#' data_annual <- get_sairr_simple_summaries(summary = "annual_mean")
+#' data_annual <- get_saq_simple_summaries(summary = "annual_mean")
 #' 
 #' @export
-get_sairr_simple_summaries <- function(file = NA, summary = "annual_mean", tz = "UTC", 
-                                       progress = FALSE) {
+get_saq_simple_summaries <- function(file = NA, summary = "annual_mean", tz = "UTC", 
+                                     progress = FALSE) {
   
   
   # Parse and check arguments

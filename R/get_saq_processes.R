@@ -1,5 +1,5 @@
 #' Function to get air quality time series processes serviced by the 
-#' \strong{sairr} package. 
+#' \strong{saqgetr} package. 
 #' 
 #' @param file File of processes helper table. 
 #' 
@@ -10,10 +10,10 @@
 #' @examples 
 #' 
 #' # Get processes
-#' data_processes <- get_sairr_processes()
+#' data_processes <- get_saq_processes()
 #' 
 #' @export
-get_sairr_processes <- function(file = NA) {
+get_saq_processes <- function(file = NA) {
   
   if (is.na(file[1])) {
     # file <- "/media/stuart/ELEMENTS_II/drop/europeimportr_new/helper_tables/processes_table.csv.gz"

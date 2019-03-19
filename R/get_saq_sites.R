@@ -1,5 +1,5 @@
 #' Function to import information for monitoring sites/stations/facilities 
-#' serviced by the \strong{sairr} package.  
+#' serviced by the \strong{saqgetr} package.  
 #' 
 #' @param file File of sites helper table. 
 #' 
@@ -10,10 +10,10 @@
 #' @examples 
 #' 
 #' # Load sites table
-#' data_sites <- get_sairr_sites()
+#' data_sites <- get_saq_sites()
 #' 
 #' @export
-get_sairr_sites <- function(file = NA) {
+get_saq_sites <- function(file = NA) {
   
   # Default file
   if (is.na(file[1])) {
