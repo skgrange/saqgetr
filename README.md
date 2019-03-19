@@ -28,7 +28,7 @@ To import data with **saqgetr**, functions with the `get_saq_*` prefix are used.
 ```
 # Load packages
 library(dplyr)
-library(sairr)
+library(saqgetr)
 
 # Import site information
 data_sites <- get_saq_sites()
@@ -58,7 +58,7 @@ glimpse(data_sites)
 
 ### Observations
 
-Sites are represented by a code which is prefixed with the country's ISO code, for example, a site in York, England, United Kingdom is identified as `gb0919a` (the ISO code for the United Kingdom is non-standard and GB is for Great Britain). To get observations this site, use `get_sairr_observations`:
+Sites are represented by a code which is prefixed with the country's ISO code, for example, a site in York, England, United Kingdom is identified as `gb0919a` (the ISO code for the United Kingdom is non-standard and GB is for Great Britain). To get observations this site, use `get_saq_observations`:
 
 ```{r}
 # Get air quality monitoring data for a York site
