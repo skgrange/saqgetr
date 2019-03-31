@@ -49,8 +49,8 @@
 #' 
 #' @export
 get_saq_observations <- function(site, variable = NA, start = NA, end = NA, 
-                                   valid_only = FALSE, tz = "UTC", 
-                                   verbose = FALSE) {
+                                 valid_only = FALSE, tz = "UTC", 
+                                 verbose = FALSE) {
   
   # Parse arguments
   site <- stringr::str_trim(site)
@@ -64,29 +64,38 @@ get_saq_observations <- function(site, variable = NA, start = NA, end = NA,
   start <- parse_date_arguments(start, "start", tz = tz)
   end <- parse_date_arguments(end, "end", tz = tz)
   
-  # Build file names
-  file_remote <- stringr::str_c("air_quality_data_site_", site, ".csv.gz")
+  # The directory
+  remote_path <- "/media/stuart/ELEMENTS_II/data/air_quality/saqgetr/observations"
+  # "https://skgrange.github.io/data.service/data/sairr/observations/"
   
-  # # Add location
-  # file_remote <- stringr::str_c(
-  #   "/media/stuart/ELEMENTS_II/drop/europeimportr_new/observations/", 
-  #   file_remote
-  # )
-  
-  file_remote <- stringr::str_c(
-    "https://skgrange.github.io/data.service/data/sairr/observations/", 
-    file_remote
-  )
-  
-  # Give names for purrr iteration
-  names(file_remote) <- site
+  # Produce file names
+  file_remote <- expand.grid(
+    site = site,
+    year = lubridate::year(start):lubridate::year(end),
+    stringsAsFactors = FALSE
+  ) %>% 
+    arrange(site,
+            year) %>% 
+    mutate(
+      file_remote = stringr::str_c(
+        remote_path,
+        "/",
+        year, 
+        "/", 
+        "air_quality_data_site_",
+        site, 
+        "_",
+        year,
+        ".csv.gz"
+      )
+    ) %>% 
+    pull(file_remote)
   
   # Load files
-  df <- purrr::imap_dfr(
+  df <- purrr::map_dfr(
     file_remote, 
     ~get_saq_observations_worker(
       file = .x,
-      site = .y,
       variable = variable,
       start = start,
       end = end,
@@ -101,16 +110,16 @@ get_saq_observations <- function(site, variable = NA, start = NA, end = NA,
 }
 
 
-get_saq_observations_worker <- function(file, site, variable, start, end,
+get_saq_observations_worker <- function(file, variable, start, end,
                                         valid_only, tz, verbose) {
-  
-  # For messaging
-  if (verbose) {
-    message(date_message(), "Importing observations for `", site, "`...")
-  }
-  
+
   # Read data
   df <- read_saq_observations_safely(file, tz = tz)
+  
+  # For messaging
+  if (verbose && nrow(df) != 0) {
+    message(date_message(), "Imported `", fs::path_file(file), "`...")
+  }
   
   # Filter to dates
   df <- filter(df, date >= start, date <= end)
