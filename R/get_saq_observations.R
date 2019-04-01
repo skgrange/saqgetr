@@ -160,6 +160,9 @@ read_saq_observations <- function(file, tz = tz) {
     mutate(date = lubridate::ymd_hms(date, tz = tz),
            date_end = lubridate::ymd_hms(date_end, tz = tz))
   
+  # Close connection
+  closeAllConnections()
+  
   return(df)
   
 }
