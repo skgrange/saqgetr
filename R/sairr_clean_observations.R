@@ -42,11 +42,7 @@ saq_clean_observations <- function(df, summary = "hour", valid_only = TRUE,
     stop("`summary` must be `hour` or `day`...", call. = FALSE)
   }
   
-  # # Get summary integer for filtering
-  # summary_integer <- data_summaries %>% 
-  #   filter(averaging_period == !!summary) %>% 
-  #   pull(summary)
-  
+  # Summary integer for filtering
   summary_integer <- if_else(summary == "hour", 1L, NA_integer_)
   summary_integer <- if_else(summary == "day", 20L, summary_integer)
   

@@ -65,8 +65,8 @@ get_saq_observations <- function(site, variable = NA, start = NA, end = NA,
   end <- parse_date_arguments(end, "end", tz = tz)
   
   # The directory
-  remote_path <- "/media/stuart/ELEMENTS_II/data/air_quality/saqgetr/observations"
-  # "https://skgrange.github.io/data.service/data/sairr/observations/"
+  # remote_path <- "/media/stuart/ELEMENTS_II/data/air_quality/saqgetr/observations"
+  remote_path <- "https://skgrange.github.io/data.service/data/saqgetr/observations"
   
   # Produce file names
   file_remote <- expand.grid(

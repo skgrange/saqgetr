@@ -17,7 +17,7 @@ get_saq_processes <- function(file = NA) {
   
   if (is.na(file[1])) {
     # file <- "/media/stuart/ELEMENTS_II/drop/europeimportr_new/helper_tables/processes_table.csv.gz"
-    file <- "https://skgrange.github.io/data.service/data/sairr/helper_tables/processes_table.csv.gz"
+    file <- "https://skgrange.github.io/data.service/data/saqgetr/helper_tables/processes_table.csv.gz"
   }
   
   # Define data types
