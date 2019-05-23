@@ -4,6 +4,8 @@
 
 **saqgetr** is an R package to import air quality monitoring data in a fast and easy way. Currently, only European data are available, but the package is generic and therefore data from other areas may be included in the future. 
 
+**saqgetr** has been made possible with the help of [Ricardo Energy & Environment](https://ee.ricardo.com).
+
 ## Installation
 
 To install the development version, install [**devtools**](https://github.com/r-lib/devtools) or [**remotes**](https://github.com/r-lib/remotes) and then use this: 
@@ -199,7 +201,7 @@ Simple annual and monthly means of the daily and hourly processes have also been
 
 ```{r}
 # Get annual means
-data_annual <- get_saq_simple_summaries(summary = "year")
+data_annual <- get_saq_simple_summaries(summary = "annual_mean")
 
 # Glimpse tibble
 glimpse(data_annual)
