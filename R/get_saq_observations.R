@@ -57,7 +57,7 @@ get_saq_observations <- function(site, variable = NA, start = NA, end = NA,
   variable <- stringr::str_trim(variable)
   
   # Dates
-  if (is.na(start)) start <- "1960-01-01"
+  if (is.na(start)) start <- lubridate::year(lubridate::now())
   if (is.na(end)) end <- lubridate::ceiling_date(lubridate::now(), unit = "year")
   
   # Parse
@@ -156,10 +156,10 @@ read_saq_observations <- function(file, tz = tz) {
     value = readr::col_double()
   )
   
-  # Read and parse dates
+  # Read and parse dates, quiet supresses time zone conversion messages
   df <- readr::read_csv(file, col_types = col_types, progress = FALSE) %>%
-    mutate(date = lubridate::ymd_hms(date, tz = tz),
-           date_end = lubridate::ymd_hms(date_end, tz = tz))
+    mutate(date = lubridate::ymd_hms(date, tz = tz, quiet = TRUE),
+           date_end = lubridate::ymd_hms(date_end, tz = tz, quiet = TRUE))
   
   # Close connection
   closeAllConnections()
