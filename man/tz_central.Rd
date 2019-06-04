@@ -3,14 +3,14 @@
 \name{tz_central}
 \alias{tz_central}
 \alias{tz_eastern}
-\title{Functions for time-zone strings.}
+\title{Functions for time zone strings.}
 \usage{
 tz_central()
 
 tz_eastern()
 }
 \description{
-Functions for time-zone strings.
+Functions for time zone strings.
 }
 \author{
 Stuart K. Grange

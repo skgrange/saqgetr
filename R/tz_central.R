@@ -1,4 +1,4 @@
-#' Functions for time-zone strings. 
+#' Functions for time zone strings. 
 #' 
 #' @author Stuart K. Grange
 #' 

@@ -65,15 +65,12 @@ get_saq_observations <- function(site, variable = NA, start = NA, end = NA,
   end <- parse_date_arguments(end, "end", tz = tz)
   
   # The directory
-  # remote_path <- "/media/stuart/ELEMENTS_II/data/air_quality/saqgetr/observations"
-  # remote_path <- "https://skgrange.github.io/data.service/data/saqgetr/observations"
   remote_path <- "http://aq-data.ricardo-aea.com/R_data/saqgetr/observations"
   
   # Produce file names
-  file_remote <- expand.grid(
+  file_remote <- tidyr::crossing(
     site = site,
-    year = lubridate::year(start):lubridate::year(end),
-    stringsAsFactors = FALSE
+    year = lubridate::year(start):lubridate::year(end)
   ) %>% 
     arrange(site,
             year) %>% 
@@ -161,7 +158,7 @@ read_saq_observations <- function(file, tz = tz) {
     mutate(date = lubridate::ymd_hms(date, tz = tz, quiet = TRUE),
            date_end = lubridate::ymd_hms(date_end, tz = tz, quiet = TRUE))
   
-  # Close connection
+  # Close connections
   closeAllConnections()
   
   return(df)

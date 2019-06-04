@@ -30,11 +30,10 @@ get_saq_simple_summaries <- function(file = NA, summary = "annual_mean", tz = "U
   summary <- stringr::str_remove(summary, "s$")
   stopifnot(summary %in% c("annual_mean", "monthly_mean"))
   
+  # Default files
   if (is.na(file[1]) && summary == "annual_mean") {
-    # file <- "https://skgrange.github.io/data.service/data/saqgetr/observations_summaries/annual_mean_summaries.csv.gz"
     file <- "http://aq-data.ricardo-aea.com/R_data/saqgetr/observations_summaries/annual_mean_summaries.csv.gz"
   } else if (is.na(file[1]) && summary == "monthly_mean") {
-    # file <- "https://skgrange.github.io/data.service/data/saqgetr/observations_summaries/monthly_mean_summaries.csv.gz"
     file <- "http://aq-data.ricardo-aea.com/R_data/saqgetr/observations_summaries/monthly_mean_summaries.csv.gz"
   }
   

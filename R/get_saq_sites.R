@@ -17,8 +17,6 @@ get_saq_sites <- function(file = NA) {
   
   # Default file
   if (is.na(file[1])) {
-    # file <- "/media/stuart/ELEMENTS_II/drop/europeimportr_new/helper_tables/sites_table.csv.gz"
-    # file <- "https://skgrange.github.io/data.service/data/saqgetr/helper_tables/sites_table.csv.gz"
     file <- "http://aq-data.ricardo-aea.com/R_data/saqgetr/helper_tables/sites_table.csv.gz"
   }
   

@@ -51,7 +51,7 @@ saq_clean_observations <- function(df, summary = "hour", valid_only = TRUE,
   
   # Only keep valid observations
   if (valid_only){
-    df <- filter(df, validity %in% c(1, 2, 3) | is.na(validity))
+    df <- filter(df, validity %in% c(1:3) | is.na(validity))
   }
   
   # Make wider
