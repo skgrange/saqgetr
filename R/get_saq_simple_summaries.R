@@ -2,13 +2,10 @@
 #' 
 #' @param file File of simple summaries table. 
 #' 
-#' @param summary Summary period to import. Can either be \code{"annual_mean"} or
-#'  \code{"monthly_mean"}. 
+#' @param summary Summary period to import. Can either be \code{"annual_means"} or
+#'  \code{"monthly_means"}. 
 #' 
-#' @param tz Time zone for the observations's dates. 
-#' 
-#' @param progress Should the function give a progress bar for when reading the
-#' data file? 
+#' @param tz Time zone for the observations' dates. 
 #' 
 #' @author Stuart K. Grange.
 #' 
@@ -17,23 +14,23 @@
 #' @examples 
 #' 
 #' # Import annual means
-#' data_annual <- get_saq_simple_summaries(summary = "annual_mean")
+#' data_annual <- get_saq_simple_summaries(summary = "annual_means")
 #' 
 #' @export
-get_saq_simple_summaries <- function(file = NA, summary = "annual_mean", tz = "UTC", 
-                                     progress = FALSE) {
+get_saq_simple_summaries <- function(file = NA, summary = "annual_means", 
+                                     tz = "UTC") {
   
   
   # Parse and check arguments
   summary <- stringr::str_trim(summary)
   summary <- stringr::str_to_lower(summary)
-  summary <- stringr::str_remove(summary, "s$")
-  stopifnot(summary %in% c("annual_mean", "monthly_mean"))
+  summary <- stringr::str_replace(summary, "_mean$", "_means")
+  stopifnot(summary %in% c("annual_means", "monthly_means"))
   
   # Default files
-  if (is.na(file[1]) && summary == "annual_mean") {
+  if (is.na(file[1]) && summary == "annual_means") {
     file <- "http://aq-data.ricardo-aea.com/R_data/saqgetr/observations_summaries/annual_mean_summaries.csv.gz"
-  } else if (is.na(file[1]) && summary == "monthly_mean") {
+  } else if (is.na(file[1]) && summary == "monthly_means") {
     file <- "http://aq-data.ricardo-aea.com/R_data/saqgetr/observations_summaries/monthly_mean_summaries.csv.gz"
   }
   
@@ -53,7 +50,7 @@ get_saq_simple_summaries <- function(file = NA, summary = "annual_mean", tz = "U
   df <- readr::read_csv(
     file,
     col_types = col_types,
-    progress = progress
+    progress = FALSE
   ) %>% 
     mutate(date = lubridate::ymd_hms(date, tz = tz),
            date_end = lubridate::ymd_hms(date_end, tz = tz))

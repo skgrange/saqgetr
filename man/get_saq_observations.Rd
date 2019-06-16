@@ -22,7 +22,7 @@ be returned.}
 
 \item{valid_only}{Should only valid observations be kept?}
 
-\item{tz}{Time zone for the observations's dates.}
+\item{tz}{Time zone for the observations' dates.}
 
 \item{verbose}{Should the function give messages?}
 }
@@ -44,8 +44,9 @@ data_hafodyrynys
 data_many <- get_saq_observations(
   site = c("gb1014a", "gb1044a", "gb1060a"),
   variable = c("nox", "no2", "o3"),
-  start = 2010,
-  end = 2019
+  start = 2012,
+  end = 2019,
+  verbose = TRUE
 )
 
 # Print tibble

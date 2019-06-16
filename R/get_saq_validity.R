@@ -1,6 +1,6 @@
-#' Function to import validiy integers for used in the \strong{saqgetr} package.  
+#' Function to import validity integers for used in the \strong{saqgetr} package.  
 #' 
-#' @param file File of validiy helper table. 
+#' @param file File of validity helper table. 
 #' 
 #' @author Stuart K. Grange.
 #' 
@@ -9,7 +9,7 @@
 #' @examples 
 #' 
 #' # Get validity integers
-#' data_validity <- get_saq_validity()
+#' data_validity_integers <- get_saq_validity()
 #' 
 #' @export
 get_saq_validity <- function(file = NA) {
@@ -38,7 +38,7 @@ get_saq_validity <- function(file = NA) {
 #' @examples 
 #' 
 #' # Get summary integers
-#' data_validity <- get_saq_summaries()
+#' data_summary_integers <- get_saq_summaries()
 #' 
 #' @export
 get_saq_summaries <- function(file = NA) {

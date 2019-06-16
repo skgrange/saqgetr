@@ -14,7 +14,7 @@
 #' 
 #' @param valid_only Should only valid observations be kept?
 #' 
-#' @param tz Time zone for the observations's dates. 
+#' @param tz Time zone for the observations' dates. 
 #' 
 #' @param verbose Should the function give messages? 
 #' 
@@ -36,8 +36,9 @@
 #' data_many <- get_saq_observations(
 #'   site = c("gb1014a", "gb1044a", "gb1060a"),
 #'   variable = c("nox", "no2", "o3"),
-#'   start = 2010,
-#'   end = 2019
+#'   start = 2012,
+#'   end = 2019,
+#'   verbose = TRUE
 #' )
 #' 
 #' # Print tibble

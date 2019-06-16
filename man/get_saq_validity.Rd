@@ -2,23 +2,23 @@
 % Please edit documentation in R/get_saq_validity.R
 \name{get_saq_validity}
 \alias{get_saq_validity}
-\title{Function to import validiy integers for used in the \strong{saqgetr} package.}
+\title{Function to import validity integers for used in the \strong{saqgetr} package.}
 \usage{
 get_saq_validity(file = NA)
 }
 \arguments{
-\item{file}{File of validiy helper table.}
+\item{file}{File of validity helper table.}
 }
 \value{
 Tibble.
 }
 \description{
-Function to import validiy integers for used in the \strong{saqgetr} package.
+Function to import validity integers for used in the \strong{saqgetr} package.
 }
 \examples{
 
 # Get validity integers
-data_validity <- get_saq_validity()
+data_validity_integers <- get_saq_validity()
 
 }
 \author{

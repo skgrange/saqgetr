@@ -4,19 +4,16 @@
 \alias{get_saq_simple_summaries}
 \title{Function to get simple summaries of air quality observations.}
 \usage{
-get_saq_simple_summaries(file = NA, summary = "annual_mean",
-  tz = "UTC", progress = FALSE)
+get_saq_simple_summaries(file = NA, summary = "annual_means",
+  tz = "UTC")
 }
 \arguments{
 \item{file}{File of simple summaries table.}
 
-\item{summary}{Summary period to import. Can either be \code{"annual_mean"} or
-\code{"monthly_mean"}.}
+\item{summary}{Summary period to import. Can either be \code{"annual_means"} or
+\code{"monthly_means"}.}
 
-\item{tz}{Time zone for the observations's dates.}
-
-\item{progress}{Should the function give a progress bar for when reading the
-data file?}
+\item{tz}{Time zone for the observations' dates.}
 }
 \value{
 Tibble.
@@ -27,7 +24,7 @@ Function to get simple summaries of air quality observations.
 \examples{
 
 # Import annual means
-data_annual <- get_saq_simple_summaries(summary = "annual_mean")
+data_annual <- get_saq_simple_summaries(summary = "annual_means")
 
 }
 \author{

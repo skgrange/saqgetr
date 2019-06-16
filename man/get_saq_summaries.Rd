@@ -18,7 +18,7 @@ Function to import summary integers for used in the \strong{saqgetr} package.
 \examples{
 
 # Get summary integers
-data_validity <- get_saq_summaries()
+data_summary_integers <- get_saq_summaries()
 
 }
 \author{
