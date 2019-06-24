@@ -13,8 +13,12 @@
 #' 
 #' @examples 
 #' 
+#' \donttest{
+#' 
 #' # Import annual means
 #' data_annual <- get_saq_simple_summaries(summary = "annual_means")
+#' 
+#' }
 #' 
 #' @export
 get_saq_simple_summaries <- function(file = NA, summary = "annual_means", 

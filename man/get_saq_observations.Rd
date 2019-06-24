@@ -40,6 +40,8 @@ data_hafodyrynys <- get_saq_observations(site = "gb1038a")
 # Print tibble
 data_hafodyrynys
 
+\donttest{
+
 # Get mulitple sites nox and ozone data for between a date range
 data_many <- get_saq_observations(
   site = c("gb1014a", "gb1044a", "gb1060a"),
@@ -55,6 +57,8 @@ data_many
 # Sites and site names
 data_many \%>\% 
   dplyr::distinct(site)
+  
+}
 
 }
 \seealso{

@@ -23,8 +23,12 @@ Function to get simple summaries of air quality observations.
 }
 \examples{
 
+\donttest{
+
 # Import annual means
 data_annual <- get_saq_simple_summaries(summary = "annual_means")
+
+}
 
 }
 \author{
