@@ -1,6 +1,7 @@
 # **saqgetr**
 
 [![Build Status](https://travis-ci.org/skgrange/saqgetr.svg?branch=master)](https://travis-ci.org/skgrange/saqgetr)
+[![Lifecycle Status](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/)
 
 **saqgetr** is an R package to import air quality monitoring data in a fast and easy way. Currently, only European data are available, but the package is generic and therefore data from other areas may be included in the future. 
 
@@ -38,7 +39,7 @@ data_sites <- get_saq_sites()
 # Glimpse tibble
 glimpse(data_sites)
 
-#> Observations: 8,993
+#> Observations: 9,016
 #> Variables: 16
 #> $ site              <chr> "ad0942a", "ad0944a", "ad0945a", "al0201a", "a…
 #> $ site_name         <chr> "Fixa", "Fixa oz", "Estacional oz Envalira", "…
@@ -69,12 +70,11 @@ data_york <- get_saq_observations(site = "gb0919a", start = 2005)
 # Glimpse tibble
 glimpse(data_york)
 
-#> Observations: 333,741
+#> Observations: 370,235
 #> Variables: 10
 #> $ date      <dttm> 2008-01-01, 2008-01-02, 2008-01-03, 2008-01-04, 2008-…
 #> $ date_end  <dttm> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
 #> $ site      <chr> "gb0919a", "gb0919a", "gb0919a", "gb0919a", "gb0919a",…
-#> $ site_name <chr> "York Fishergate", "York Fishergate", "York Fishergate…
 #> $ variable  <chr> "pm10", "pm10", "pm10", "pm10", "pm10", "pm10", "pm10"…
 #> $ process   <int> 62392, 62392, 62392, 62392, 62392, 62392, 62392, 62392…
 #> $ summary   <int> 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20…
@@ -86,7 +86,8 @@ glimpse(data_york)
 `get_saq_observations` takes a vector of sites to import many sites at once. Beware that if a user stacks the sites, a lot of data can be returned. For example, using the two sites below returns a tibble/data frame/table with almost 10 million observations. 
 
 ```{r}
-# Get almost 10 million observations
+# Get almost 10 million observations, verbose is used to give an indication on
+# what is occuring
 data_large_ish <- get_saq_observations(
   site = c("gb0036r", "gb0682a"), 
   start = 1960,
@@ -96,12 +97,11 @@ data_large_ish <- get_saq_observations(
 # Glimpse tibble
 glimpse(data_large_ish)
 
-#> Observations: 9,911,190
-#> Variables: 10
+#> Observations: 9,981,977
+#> Variables: 9
 #> $ date      <dttm> 1995-09-11, 1995-09-12, 1995-09-13, 1995-09-14, 1995-…
 #> $ date_end  <dttm> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
 #> $ site      <chr> "gb0036r", "gb0036r", "gb0036r", "gb0036r", "gb0036r",…
-#> $ site_name <chr> "Harwell", "Harwell", "Harwell", "Harwell", "Harwell",…
 #> $ variable  <chr> "so2", "so2", "so2", "so2", "so2", "so2", "so2", "so2"…
 #> $ process   <int> 57295, 57295, 57295, 57295, 57295, 57295, 57295, 57295…
 #> $ summary   <int> 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20…
@@ -131,7 +131,7 @@ data_processes <- get_saq_processes()
 # Glimpse tibble
 glimpse(data_processes)
 
-#> Observations: 166,833
+#> Observations: 171,992
 #> Variables: 15
 #> $ process           <int> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,…
 #> $ site              <chr> "al0201a", "al0201a", "al0201a", "al0201a", "a…
@@ -159,7 +159,7 @@ Other helper tables are also available:
 # Summary integers
 data_summary_integers <- get_saq_summaries() %>% 
   print(n = Inf)
-  
+
 #> # A tibble: 20 x 2
 #>    averaging_period summary
 #>    <chr>              <int>
@@ -210,7 +210,7 @@ data_annual <- get_saq_simple_summaries(summary = "annual_mean")
 # Glimpse tibble
 glimpse(data_annual)
 
-#> Observations: 623,054
+#> Observations: 654,568
 #> Variables: 8
 #> $ date           <dttm> 2013-01-01, 2014-01-01, 2015-01-01, 2016-01-01, …
 #> $ date_end       <dttm> 2013-12-31 23:59:59, 2014-12-31 23:59:59, 2015-1…
