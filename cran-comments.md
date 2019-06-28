@@ -1,6 +1,9 @@
-# New package submission
+# New package resubmission
 
-This is a new package submission.
+This is a new package resubmission with changes to the title and description in the DESCRIPTION file after feedback from a CRAN member.
+
+  - The title text now reads: "Import Air Quality Monitoring Data in a Fast and Easy Way"
+  - The web links used for the source of the observations are given in the description with the required formatting. 
 
 # Test environments
 
@@ -29,7 +32,7 @@ New submission
 
 # Other comments
 
-This is a new package. 
+This is a new package.
 
 There are two examples which can take longer than five seconds to run. Therefore have been documented with the use of `donttest` (`get_saq_observations` and `get_saq_simple_summaries`).
 
