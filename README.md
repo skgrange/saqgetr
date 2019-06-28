@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/skgrange/saqgetr.svg?branch=master)](https://travis-ci.org/skgrange/saqgetr)
 [![Lifecycle Status](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/)
+[![CRAN status](http://www.r-pkg.org/badges/version/sagetr)](https://cran.r-project.org/package=sagetr)
+[![CRAN log](https://cranlogs.r-pkg.org/badges/last-week/sagetr?color=brightgreen)](https://cran.r-project.org/package=sagetr)
 
 **saqgetr** is an R package to import air quality monitoring data in a fast and easy way. Currently, only European data are available, but the package is generic and therefore data from other areas may be included in the future. 
 
@@ -9,18 +11,22 @@
 
 ## Installation
 
-To install the development version, install [**devtools**](https://github.com/r-lib/devtools) or [**remotes**](https://github.com/r-lib/remotes) and then use this: 
+**saqgetr** is avalaible on CRAN and can be installed in the normal way:
 
+```
+# Install saqgetr package
+install.packages("saqgetr")
+```
+
+If desired, the development version can be installed with the help of [**devtools**](https://github.com/r-lib/devtools) or [**remotes**](https://github.com/r-lib/remotes) like this: 
 ```
 # Install development version saqgetr
 remotes::install_github("skgrange/saqgetr")
 ```
 
-**saqgetr** should make it onto CRAN in the near future. 
-
 ## Framework
 
-**saqgetr** acts as an interface to pre-prepared data files located on a web server. For each monitoring site serviced, there is a single file containing all observations. There are a number of metadata files too which enable users to further understand the location and type of observations are available. The data files are compressed text files (`.csv.gz`) which allows for simple and fast importing and if other interfaces wish to be developed, this should be simple. 
+**saqgetr** acts as an interface to pre-prepared data files located on a web server. For each monitoring site serviced, there is a single file containing all observations for each year. There are a collection of metadata tables too which enable users to further understand the location and type of observations are available. The data files are compressed text files (`.csv.gz`) which allows for simple and fast importing and if other interfaces wish to be developed, this should be simple.
 
 ## Usage
 
