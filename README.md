@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/skgrange/saqgetr.svg?branch=master)](https://travis-ci.org/skgrange/saqgetr)
 [![Lifecycle Status](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/)
 [![CRAN status](https://www.r-pkg.org/badges/version/saqgetr)](https://cran.r-project.org/package=sagetr)
-[![CRAN log](https://cranlogs.r-pkg.org/badges/last-week/sagetr?color=brightgreen)](https://cran.r-project.org/package=sagetr)
+[![CRAN log](https://cranlogs.r-pkg.org/badges/last-week/saqgetr?color=brightgreen)](https://cran.r-project.org/package=saqgetr)
 
 **saqgetr** is an R package to import air quality monitoring data in a fast and easy way. Currently, only European data are available, but the package is generic and therefore data from other areas may be included in the future. 
 
