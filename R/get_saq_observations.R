@@ -115,14 +115,12 @@ get_saq_observations <- function(site, variable = NA, start = NA, end = NA,
 
 get_saq_observations_worker <- function(file, variable, start, end,
                                         valid_only, tz, verbose) {
+  
+  # Message file to user
+  if (verbose) message(date_message(), "Loading `", fs::path_file(file), "`...")
 
   # Read data
-  df <- read_saq_observations_safely(file, tz = tz)
-  
-  # For messaging
-  if (verbose && nrow(df) != 0) {
-    message(date_message(), "Imported `", fs::path_file(file), "`...")
-  }
+  df <- read_saq_observations(file, tz = tz, verbose = verbose)
   
   # Filter to dates
   df <- filter(df, date >= start, date <= end)
@@ -143,7 +141,7 @@ get_saq_observations_worker <- function(file, variable, start, end,
 
 
 # Reading function
-read_saq_observations <- function(file, tz = tz) {
+read_saq_observations <- function(file, tz = tz, verbose) {
   
   # Data types
   col_types <- readr::cols(
@@ -158,24 +156,32 @@ read_saq_observations <- function(file, tz = tz) {
     value = readr::col_double()
   )
   
-  # Read and parse dates, quiet supresses time zone conversion messages
-  df <- readr::read_csv(file, col_types = col_types, progress = FALSE) %>%
-    mutate(date = lubridate::ymd_hms(date, tz = tz, quiet = TRUE),
-           date_end = lubridate::ymd_hms(date_end, tz = tz, quiet = TRUE))
+  # Create gz connection
+  con <- file %>% 
+    url() %>% 
+    gzcon()
   
-  # Close connections
-  closeAllConnections()
+  df <- tryCatch({
+    
+    # Read and parse dates, quiet supresses time zone conversion messages and
+    # warning supression is for when url does not exist
+    suppressWarnings(
+      readr::read_csv(con, col_types = col_types, progress = FALSE) %>%
+        mutate(date = lubridate::ymd_hms(date, tz = tz, quiet = TRUE),
+               date_end = lubridate::ymd_hms(date_end, tz = tz, quiet = TRUE))
+    )
+    
+  }, error = function(e) {
+    
+    # Close the connection on error
+    close.connection(con)
+    tibble()
+    
+  })
   
   return(df)
   
 }
-
-
-# Make reader return empty tibble when an error occurs
-read_saq_observations_safely <- purrr::possibly(
-  read_saq_observations, 
-  otherwise = tibble::tibble()
-)
 
 
 # From threadr

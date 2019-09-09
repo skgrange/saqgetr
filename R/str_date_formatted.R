@@ -20,4 +20,3 @@ str_date_formatted <- function(date = NA, time_zone = TRUE,
 
 
 date_message <- function() stringr::str_c(str_date_formatted(), ": ")
-
