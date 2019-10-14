@@ -1,0 +1,12 @@
+citHeader("To cite saqgetr in publications please use:")
+
+bibentry(
+   bibtype = "Manual",
+   title = "Technical note: saqgetr R package",
+   author = personList(
+     as.person("Stuart K. Grange")
+    ),
+   year = 2019,
+   url = "https://drive.google.com/open?id=1IgDODHqBHewCTKLdAAxRyR7ml8ht6Ods"
+)
+

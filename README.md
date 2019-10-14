@@ -5,13 +5,13 @@
 [![CRAN status](https://www.r-pkg.org/badges/version/saqgetr)](https://cran.r-project.org/package=sagetr)
 [![CRAN log](https://cranlogs.r-pkg.org/badges/last-week/saqgetr?color=brightgreen)](https://cran.r-project.org/package=saqgetr)
 
-**saqgetr** is an R package to import air quality monitoring data in a fast and easy way. Currently, only European data are available, but the package is generic and therefore data from other areas may be included in the future. 
+**saqgetr** is an R package to import air quality monitoring data in a fast and easy way. Currently, only European data are available, but the package is generic and therefore data from other areas may be included in the future. For documentation on what data sources are accessible, please see [**saqgetr**' technical note](https://drive.google.com/open?id=1IgDODHqBHewCTKLdAAxRyR7ml8ht6Ods).
 
 **saqgetr** has been made possible with the help of [Ricardo Energy & Environment](https://ee.ricardo.com). 
 
 ## Installation
 
-**saqgetr** is avalaible on CRAN and can be installed in the normal way:
+**saqgetr** is available on CRAN and can be installed in the normal way:
 
 ```
 # Install saqgetr package
@@ -20,7 +20,7 @@ install.packages("saqgetr")
 
 If desired, the development version can be installed with the help of [**devtools**](https://github.com/r-lib/devtools) or [**remotes**](https://github.com/r-lib/remotes) like this: 
 ```
-# Install development version saqgetr
+# Install development version of saqgetr
 remotes::install_github("skgrange/saqgetr")
 ```
 
@@ -89,10 +89,9 @@ glimpse(data_york)
 #> $ value     <dbl> 21.625, 22.708, 24.667, 21.833, 24.000, 29.875, 16.833…
 ```
 
-`get_saq_observations` takes a vector of sites to import many sites at once. Beware that if a user stacks the sites, a lot of data can be returned. For example, using the two sites below returns a tibble/data frame/table with almost 10 million observations. 
-
+`get_saq_observations` takes a vector of sites to import many sites at once. Beware that if a user stacks the sites, a lot of data can be returned. For example, using the two sites below returns a tibble/data frame/table with over 10 million observations. 
 ```{r}
-# Get almost 10 million observations, verbose is used to give an indication on
+# Get 10 million observations, verbose is used to give an indication on
 # what is occuring
 data_large_ish <- get_saq_observations(
   site = c("gb0036r", "gb0682a"), 
@@ -124,6 +123,9 @@ Once a data are imported, valid data for a certain averaging period/summary can 
 # Get only valid hourly data and reshape (spread)
 data_york_spread <- data_york %>% 
   saq_clean_observations(summary = "hour", valid_only = TRUE, spread = TRUE)
+
+# Glimpse tibble
+glimpse(data_york_spread)
 ```
 
 ### Processes
@@ -216,14 +218,31 @@ data_annual <- get_saq_simple_summaries(summary = "annual_mean")
 # Glimpse tibble
 glimpse(data_annual)
 
-#> Observations: 654,568
+#> Observations: 655,362
 #> Variables: 8
 #> $ date           <dttm> 2013-01-01, 2014-01-01, 2015-01-01, 2016-01-01, …
 #> $ date_end       <dttm> 2013-12-31 23:59:59, 2014-12-31 23:59:59, 2015-1…
 #> $ site           <chr> "ad0942a", "ad0942a", "ad0942a", "ad0942a", "ad09…
-#> $ variable       <chr> "co", "co", "co", "co", "co", "no", "no", "no", "…
+#> $ variable       <chr> "co", "co", "co", "co", "co", "co", "co", "no", "…
 #> $ summary_source <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
 #> $ summary        <int> 102, 102, 102, 102, 102, 102, 102, 102, 102, 102,…
-#> $ count          <dbl> 1, 8438, 8385, 8171, 8440, 1, 8310, 8308, 8341, 8…
+#> $ count          <dbl> 1, 8438, 8385, 8171, 8441, 8217, 5990, 1, 8310, 8…
 #> $ value          <dbl> 0.5000000, 0.3224579, 0.3582230, 0.3168768, 0.259…
+
+# What was York Fishergate's (hourly) PM10 concentraion in 2017? 
+data_annual %>%
+  filter(site == "gb0682a",
+         lubridate::year(date) == 2017L,
+         variable == "pm10",
+         summary_source == 1L) %>% 
+  select(date,
+         site,
+         variable,
+         count,
+         value)
+         
+#> # A tibble: 1 x 5
+#>   date                site    variable count value
+#>   <dttm>              <chr>   <chr>    <dbl> <dbl>
+#> 1 2017-01-01 00:00:00 gb0682a pm10      8442  23.8
 ```
