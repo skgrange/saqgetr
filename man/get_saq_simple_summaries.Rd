@@ -4,8 +4,7 @@
 \alias{get_saq_simple_summaries}
 \title{Function to get simple summaries of air quality observations.}
 \usage{
-get_saq_simple_summaries(file = NA, summary = "annual_means",
-  tz = "UTC")
+get_saq_simple_summaries(file = NA, summary = "annual_means", tz = "UTC")
 }
 \arguments{
 \item{file}{File of simple summaries table.}

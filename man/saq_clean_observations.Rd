@@ -5,8 +5,7 @@
 \title{Function to clean and format observational data from \strong{saqgetr}'s 
 \code{\link{get_saq_observations}} function.}
 \usage{
-saq_clean_observations(df, summary = "hour", valid_only = TRUE,
-  spread = FALSE)
+saq_clean_observations(df, summary = "hour", valid_only = TRUE, spread = FALSE)
 }
 \arguments{
 \item{df}{Tibble/data frame from \code{\link{get_saq_observations}}.}

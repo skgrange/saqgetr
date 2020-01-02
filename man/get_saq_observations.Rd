@@ -4,8 +4,15 @@
 \alias{get_saq_observations}
 \title{Function to get \strong{saqgetr} air quality observations.}
 \usage{
-get_saq_observations(site, variable = NA, start = NA, end = NA,
-  valid_only = FALSE, tz = "UTC", verbose = FALSE)
+get_saq_observations(
+  site,
+  variable = NA,
+  start = NA,
+  end = NA,
+  valid_only = FALSE,
+  tz = "UTC",
+  verbose = FALSE
+)
 }
 \arguments{
 \item{site}{A vector of sites to import. Use \link{get_saq_sites} to find

@@ -32,7 +32,7 @@
 #' 
 #' @export
 saq_clean_observations <- function(df, summary = "hour", valid_only = TRUE,
-                                     spread = FALSE) {
+                                   spread = FALSE) {
   
   # Parse inputs
   summary <- stringr::str_trim(summary)
@@ -45,6 +45,11 @@ saq_clean_observations <- function(df, summary = "hour", valid_only = TRUE,
   # Summary integer for filtering
   summary_integer <- if_else(summary == "hour", 1L, NA_integer_)
   summary_integer <- if_else(summary == "day", 20L, summary_integer)
+  
+  # Return empty tibble if no data is passed
+  if (nrow(df) == 0) {
+    return(tibble())
+  }
   
   # Filter to single summary
   df <- filter(df, summary == !!summary_integer)
