@@ -42,7 +42,11 @@ Function to get \strong{saqgetr} air quality observations.
 \examples{
 
 # Load a site's data
-data_hafodyrynys <- get_saq_observations(site = "gb1038a")
+data_hafodyrynys <- get_saq_observations(
+  site = "gb1038a", 
+  start = 2018, 
+  end = 2018
+)
 
 # Print tibble
 data_hafodyrynys
@@ -53,7 +57,7 @@ data_hafodyrynys
 data_many <- get_saq_observations(
   site = c("gb1014a", "gb1044a", "gb1060a"),
   variable = c("nox", "no2", "o3"),
-  start = 2012,
+  start = 2018,
   end = 2019,
   verbose = TRUE
 )

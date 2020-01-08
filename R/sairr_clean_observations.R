@@ -18,7 +18,11 @@
 #' @examples 
 #' 
 #' # Load a site's data
-#' data_hafodyrynys <- get_saq_observations(site = "gb1038a")
+#' data_hafodyrynys <- get_saq_observations(
+#'   site = "gb1038a", 
+#'   start = 2018, 
+#'   end = 2018
+#' )
 #' 
 #' # Keep only valid and hourly data
 #' data_hafodyrynys_hourly <- data_hafodyrynys %>% 

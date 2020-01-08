@@ -1,6 +1,8 @@
-# Sargent 0.1.19
+# saqgetr 0.1.19
 
   - Harden `saq_clean_observations` to handle zero row input data frames/tibbles. Needed to be done for failed CRAN checks due to the New Year.
+  - Constrain examples to years to avoid zero row examples.
+  - Add curl as depends to fix CRAN check notes. 
 
 # saqgetr 0.1.18
 
