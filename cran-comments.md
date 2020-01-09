@@ -1,18 +1,15 @@
 # New package resubmission
 
-This is a new package resubmission with changes to the title and description in the DESCRIPTION file after feedback from a CRAN member.
-
-  - The title text now reads: "Import Air Quality Monitoring Data in a Fast and Easy Way"
-  - The web links used for the source of the observations are given in the description with the required formatting. 
+This is package update submission after some breakages were detected at the very start of 2020. 
 
 # Test environments
 
-  - Local, Ubuntu 18.04.1 LTS, R 3.6.0
+  - Local, Ubuntu 18.04.1 LTS, R 3.6.2
   
-  - Travis CI, Ubuntu 14.04.5 LTS, R 3.6.0
+  - Travis CI, Ubuntu 16.04.6 LTS, R 3.6.2
   
   - [win-builder](https://win-builder.r-project.org/), Windows Server 2008, (R-release and R-devel) 
-  
+    
   - R-Hub
     - Windows Server 2008 R2 SP1, R-devel, 32/64 bit
     - Ubuntu Linux 16.04 LTS, R-release, GCC
@@ -20,21 +17,11 @@ This is a new package resubmission with changes to the title and description in 
 
 # R CMD check results
 
-The R CMD checks produce no errors or warnings but one note because this is a new submission:
+The R CMD checks produce no errors, warnings, or notes:
 
 ```
-0 errors | 0 warnings | 1 note
-
-checking CRAN incoming feasibility ... NOTE
-Maintainer: 'Stuart K. Grange <stuart.grange@york.ac.uk>'
-New submission
+0 errors ✓ | 0 warnings ✓ | 0 notes ✓
 ```
-
-# Other comments
-
-This is a new package.
-
-There are two examples which can take longer than five seconds to run. Therefore have been documented with the use of `donttest` (`get_saq_observations` and `get_saq_simple_summaries`).
 
 # Downstream dependencies
 
