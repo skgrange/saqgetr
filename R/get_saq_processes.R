@@ -9,8 +9,12 @@
 #' 
 #' @examples 
 #' 
+#' \donttest{
+#' 
 #' # Get processes
 #' data_processes <- get_saq_processes()
+#' 
+#' }
 #' 
 #' @export
 get_saq_processes <- function(file = NA) {

@@ -1,4 +1,4 @@
-# **saqgetr**
+# **saqgetr** <a href='https://github.com/skgrange/saqgetr'><img src='man/figures/logo.png' align="right" height="131.5" /></a>
 
 [![Build Status](https://travis-ci.org/skgrange/saqgetr.svg?branch=master)](https://travis-ci.org/skgrange/saqgetr)
 [![Lifecycle Status](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/)
