@@ -38,7 +38,7 @@
 #' 
 #' \donttest{
 #' 
-#' # Get mulitple sites nox and ozone data for between a date range
+#' # Get multiple sites nox and ozone data for between a date range
 #' data_many <- get_saq_observations(
 #'   site = c("gb1014a", "gb1044a", "gb1060a"),
 #'   variable = c("nox", "no2", "o3"),
@@ -125,6 +125,9 @@ get_saq_observations_worker <- function(file, variable, start, end,
 
   # Read data
   df <- read_saq_observations(file, tz = tz, verbose = verbose)
+  
+  # Return here
+  if (nrow(df) == 0) return(tibble())
   
   # Filter to dates
   df <- filter(df, date >= start, date <= end)

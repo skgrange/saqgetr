@@ -19,8 +19,12 @@ Function to get air quality time series processes serviced by the
 }
 \examples{
 
+\donttest{
+
 # Get processes
 data_processes <- get_saq_processes()
+
+}
 
 }
 \author{

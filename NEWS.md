@@ -1,3 +1,7 @@
+# saqgetr 0.x
+
+  - Minor changes to improve compatibility with dplyr 1.0.0
+
 # saqgetr 0.1.19
 
   - Harden `saq_clean_observations` to handle zero row input data frames/tibbles. Needed to be done for failed CRAN checks due to the New Year.
