@@ -1,6 +1,6 @@
-# saqgetr 0.x
+# saqgetr 0.2.0
 
-  - Minor changes to improve compatibility with dplyr 1.0.0
+  - Minor changes to improve compatibility with dplyr 1.0.0.
 
 # saqgetr 0.1.19
 
