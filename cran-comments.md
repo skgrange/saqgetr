@@ -1,6 +1,6 @@
-## New package version
+# New package version
 
-This is a minor package update submission with minor changes to improve compatibility with dplyr 1.0.0.
+This is a minor package update submission with changes to improve compatibility with dplyr 1.0.0.
 
 # Test environments
 
