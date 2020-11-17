@@ -1,3 +1,7 @@
+# saqgetr 0.2.1
+
+  - Alter connection closing for `get_saq_observations` when file does not exist.
+
 # saqgetr 0.2.0
 
   - Minor changes to improve compatibility with dplyr 1.0.0.

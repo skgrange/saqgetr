@@ -43,7 +43,7 @@
 #'   site = c("gb1014a", "gb1044a", "gb1060a"),
 #'   variable = c("nox", "no2", "o3"),
 #'   start = 2018,
-#'   end = 2019,
+#'   end = 2022,
 #'   verbose = TRUE
 #' )
 #' 
@@ -121,7 +121,7 @@ get_saq_observations_worker <- function(file, variable, start, end,
                                         valid_only, tz, verbose) {
   
   # Message file to user
-  if (verbose) message(date_message(), "Loading `", fs::path_file(file), "`...")
+  if (verbose) message(date_message(), "Loading `", basename(file), "`...")
 
   # Read data
   df <- read_saq_observations(file, tz = tz, verbose = verbose)
@@ -170,8 +170,8 @@ read_saq_observations <- function(file, tz = tz, verbose) {
   
   df <- tryCatch({
     
-    # Read and parse dates, quiet supresses time zone conversion messages and
-    # warning supression is for when url does not exist
+    # Read and parse dates, quiet suppresses time zone conversion messages and
+    # warning suppression is for when url does not exist
     suppressWarnings(
       readr::read_csv(con, col_types = col_types, progress = FALSE) %>%
         mutate(date = lubridate::ymd_hms(date, tz = tz, quiet = TRUE),
@@ -179,11 +179,8 @@ read_saq_observations <- function(file, tz = tz, verbose) {
     )
     
   }, error = function(e) {
-    
-    # Close the connection on error
-    close.connection(con)
+    # Return an empty tibble
     tibble()
-    
   })
   
   return(df)

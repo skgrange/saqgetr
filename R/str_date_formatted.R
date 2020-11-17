@@ -5,7 +5,7 @@ str_date_formatted <- function(date = NA, time_zone = TRUE,
   if (is.na(date)[1]) date <- lubridate::now(tz = Sys.timezone())
   
   # Format string
-  format_date <- ifelse(
+  format_date <- if_else(
     fractional_seconds, 
     "%Y-%m-%d %H:%M:%OS3", 
     "%Y-%m-%d %H:%M:%S"

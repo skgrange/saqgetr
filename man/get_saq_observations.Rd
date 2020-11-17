@@ -58,7 +58,7 @@ data_many <- get_saq_observations(
   site = c("gb1014a", "gb1044a", "gb1060a"),
   variable = c("nox", "no2", "o3"),
   start = 2018,
-  end = 2019,
+  end = 2022,
   verbose = TRUE
 )
 
