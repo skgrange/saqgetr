@@ -10,7 +10,7 @@ Description: A collection of tools to access prepared air quality monitoring
     sourced from open and publicly accessible repositories and can be found in 
     these locations: 
     <https://www.eea.europa.eu/data-and-maps/data/airbase-the-european-air-quality-database-8> 
-    and <http://discomap.eea.europa.eu/map/fme/AirQualityExport.htm>. The web 
+    and <https://discomap.eea.europa.eu/map/fme/AirQualityExport.htm>. The web 
     server space has been provided by Ricardo Energy & Environment.
 Maintainer: Stuart K. Grange <stuart.grange@york.ac.uk>
 URL: https://github.com/skgrange/saqgetr
