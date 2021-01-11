@@ -49,7 +49,7 @@ data_hafodyrynys <- get_saq_observations(
 )
 
 # Print tibble
-data_hafodyrynys
+print(data_hafodyrynys)
 
 \donttest{
 
@@ -63,7 +63,7 @@ data_many <- get_saq_observations(
 )
 
 # Print tibble
-data_many
+print(data_many)
 
 # Sites and site names
 data_many \%>\% 

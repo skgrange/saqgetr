@@ -18,6 +18,9 @@
 #' # Import annual means
 #' data_annual <- get_saq_simple_summaries(summary = "annual_means")
 #' 
+#' # Import monthly means, quite a large request so will take some time
+#' data_month <- get_saq_simple_summaries(summary = "monthly_means")
+#' 
 #' }
 #' 
 #' @export
@@ -51,13 +54,14 @@ get_saq_simple_summaries <- function(file = NA, summary = "annual_means",
   )
   
   # Read data
-  df <- readr::read_csv(
-    file,
-    col_types = col_types,
-    progress = FALSE
-  ) %>% 
-    mutate(date = lubridate::ymd_hms(date, tz = tz),
-           date_end = lubridate::ymd_hms(date_end, tz = tz))
+  df <- read_csv_gz_remote(file, col_types = col_types) 
+  
+  # Parse dates
+  if (nrow(df) >= 1) {
+    df <- df %>% 
+      mutate(date = lubridate::ymd_hms(date, tz = tz),
+             date_end = lubridate::ymd_hms(date_end, tz = tz))
+  }
   
   return(df)
   

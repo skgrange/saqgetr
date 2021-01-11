@@ -34,7 +34,7 @@
 #' )
 #' 
 #' # Print tibble
-#' data_hafodyrynys
+#' print(data_hafodyrynys)
 #' 
 #' \donttest{
 #' 
@@ -48,7 +48,7 @@
 #' )
 #' 
 #' # Print tibble
-#' data_many
+#' print(data_many)
 #' 
 #' # Sites and site names
 #' data_many %>% 
@@ -124,7 +124,7 @@ get_saq_observations_worker <- function(file, variable, start, end,
   if (verbose) message(date_message(), "Loading `", basename(file), "`...")
 
   # Read data
-  df <- read_saq_observations(file, tz = tz, verbose = verbose)
+  df <- read_saq_observations(file, tz = tz)
   
   # Return here
   if (nrow(df) == 0) return(tibble())
@@ -148,7 +148,7 @@ get_saq_observations_worker <- function(file, variable, start, end,
 
 
 # Reading function
-read_saq_observations <- function(file, tz = tz, verbose) {
+read_saq_observations <- function(file, tz = tz) {
   
   # Data types
   col_types <- readr::cols(
@@ -163,25 +163,15 @@ read_saq_observations <- function(file, tz = tz, verbose) {
     value = readr::col_double()
   )
   
-  # Create gz connection
-  con <- file %>% 
-    url() %>% 
-    gzcon()
+  # Read data, verbose is for remote location message
+  df <- read_csv_gz_remote(file, col_types = col_types, verbose = FALSE)
   
-  df <- tryCatch({
-    
-    # Read and parse dates, quiet suppresses time zone conversion messages and
-    # warning suppression is for when url does not exist
-    suppressWarnings(
-      readr::read_csv(con, col_types = col_types, progress = FALSE) %>%
-        mutate(date = lubridate::ymd_hms(date, tz = tz, quiet = TRUE),
-               date_end = lubridate::ymd_hms(date_end, tz = tz, quiet = TRUE))
-    )
-    
-  }, error = function(e) {
-    # Return an empty tibble
-    tibble()
-  })
+  # Parse dates
+  if (nrow(df) >= 1) {
+    df <- df %>% 
+      mutate(date = lubridate::ymd_hms(date, tz = tz, quiet = TRUE),
+             date_end = lubridate::ymd_hms(date_end, tz = tz, quiet = TRUE))
+  }
   
   return(df)
   

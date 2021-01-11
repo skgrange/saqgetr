@@ -19,8 +19,8 @@ get_saq_validity <- function(file = NA) {
     file <- "http://aq-data.ricardo-aea.com/R_data/saqgetr/helper_tables/validity_integers_table.csv.gz"
   }
   
-  # Load file
-  df <- readr::read_csv(file, col_types = "ilcc", progress = FALSE)
+  # Read file
+  df <- read_csv_gz_remote(file, col_types = "ilcc")
   
   return(df)
   
@@ -48,8 +48,8 @@ get_saq_summaries <- function(file = NA) {
     file <- "http://aq-data.ricardo-aea.com/R_data/saqgetr/helper_tables/summary_integers_table.csv.gz"
   }
   
-  # Load file
-  df <- readr::read_csv(file, col_types = "ci", progress = FALSE)
+  # Read file
+  df <- read_csv_gz_remote(file, col_types = "ci")
   
   return(df)
   

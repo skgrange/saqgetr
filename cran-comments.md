@@ -1,6 +1,6 @@
 # New package version
 
-This is a minor package update submission with changes to catch new behaviour of **readr** when reading remote files.
+This is a minor package update submission with changes to allow for better messaging when remote resources do not exist of cannot be reached. 
 
 # Test environments
 

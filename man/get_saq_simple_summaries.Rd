@@ -27,6 +27,9 @@ Function to get simple summaries of air quality observations.
 # Import annual means
 data_annual <- get_saq_simple_summaries(summary = "annual_means")
 
+# Import monthly means, quite a large request so will take some time
+data_month <- get_saq_simple_summaries(summary = "monthly_means")
+
 }
 
 }

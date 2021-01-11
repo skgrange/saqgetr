@@ -43,10 +43,15 @@ get_saq_processes <- function(file = NA) {
     observation_count = readr::col_double()
   )
   
-  # Read and parse dates
-  df <- readr::read_csv(file, col_types = col_types, progress = FALSE) %>% 
-    mutate(date_start = lubridate::ymd_hms(date_start, tz = "UTC"),
-           date_end = lubridate::ymd_hms(date_end, tz = "UTC"))
+  # Read data
+  df <- read_csv_gz_remote(file, col_types = col_types) 
+  
+  # Parse dates
+  if (nrow(df) >= 1) {
+    df <- df %>% 
+      mutate(date_start = lubridate::ymd_hms(date_start, tz = "UTC"),
+             date_end = lubridate::ymd_hms(date_end, tz = "UTC"))
+  }
   
   return(df)
   

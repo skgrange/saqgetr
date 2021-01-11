@@ -1,3 +1,8 @@
+# saqgetr 0.2.2
+
+  - New method to fetch remote files using **httr** and status checks which allow for useful messages if the remote files cannot be reached. 
+  - The **fs** and **curl** are no longer depends
+
 # saqgetr 0.2.1
 
   - Alter connection closing for `get_saq_observations` when file does not exist.
@@ -10,7 +15,7 @@
 
   - Harden `saq_clean_observations` to handle zero row input data frames/tibbles. Needed to be done for failed CRAN checks due to the New Year.
   - Constrain examples to years to avoid zero row examples.
-  - Add curl as depends to fix CRAN check notes. 
+  - Add **curl** as depends to fix CRAN check notes. 
 
 # saqgetr 0.1.18
 
