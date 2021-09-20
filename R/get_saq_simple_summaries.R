@@ -18,6 +18,10 @@
 #' # Import annual means
 #' data_annual <- get_saq_simple_summaries(summary = "annual_means")
 #' 
+#' }
+#' 
+#' \dontrun{
+#' 
 #' # Import monthly means, quite a large request so will take some time
 #' data_month <- get_saq_simple_summaries(summary = "monthly_means")
 #' 
@@ -59,8 +63,8 @@ get_saq_simple_summaries <- function(file = NA, summary = "annual_means",
   # Parse dates
   if (nrow(df) >= 1) {
     df <- df %>% 
-      mutate(date = lubridate::ymd_hms(date, tz = tz),
-             date_end = lubridate::ymd_hms(date_end, tz = tz))
+      mutate(date = lubridate::ymd_hms(date, tz = tz, quiet = TRUE),
+             date_end = lubridate::ymd_hms(date_end, tz = tz, quiet = TRUE))
   }
   
   return(df)

@@ -1,4 +1,8 @@
-# saqgetr 0.2.2
+# saqgetr 0.2.xx
+
+  - **lubriate** parsers are set to `quiet` after some new messages were being raised. 
+
+# saqgetr 0.2.21
 
   - New method to fetch remote files using **httr** and status checks which allow for useful messages if the remote files cannot be reached. 
   - The **fs** and **curl** are no longer depends
