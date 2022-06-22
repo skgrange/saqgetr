@@ -1,6 +1,7 @@
 # saqgetr 0.2.xx
 
   - **lubriate** parsers are set to `quiet` after some new messages were being raised. 
+  - NULL functions now have names for their documentation
 
 # saqgetr 0.2.21
 
