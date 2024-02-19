@@ -8,6 +8,10 @@
 
 **saqgetr** has been made possible with the help of [Ricardo Energy & Environment](https://ee.ricardo.com). 
 
+## Retirement note
+
+**saqgetr** will be retired in mid-2024. There are several reasons for the retirement, but the main points are that I no longer have the scope to ensure I catch all issues when they arise, the access to the remote servers used for **saqgetr** has become progressively more difficult due to my relocation and stricter security policies, and the near-real-time (E2a) data flow contains far more unreliable observations that in the past that are not being fixed or updated but the member states. Therefore, the database underlying **saqgetr** requires more maintenance than I can provide. The final update of observations was conducted on `2023-12-08`. 
+
 ## Installation
 
 **saqgetr** is available on CRAN and can be installed in the normal way:
