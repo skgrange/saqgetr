@@ -1,6 +1,6 @@
 # **saqgetr** <a href='https://github.com/skgrange/saqgetr'><img src='man/figures/logo.png' align="right" height="131.5" /></a>
 
-[![Lifecycle Status](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/)
+[![Lifecycle: retired](https://img.shields.io/badge/lifecycle-retired-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#retired)
 [![CRAN status](https://www.r-pkg.org/badges/version/saqgetr)](https://cran.r-project.org/package=sagetr)
 [![CRAN log](https://cranlogs.r-pkg.org/badges/last-week/saqgetr?color=brightgreen)](https://cran.r-project.org/package=saqgetr)
 
