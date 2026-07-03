@@ -3,7 +3,7 @@ citHeader("To cite saqgetr in publications please use:")
 bibentry(
    bibtype = "Manual",
    title = "Technical note: saqgetr R package",
-   author = personList(
+   author = c(
      as.person("Stuart K. Grange")
     ),
    year = 2019,
